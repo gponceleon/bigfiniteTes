@@ -1,0 +1,28 @@
+{
+  "name": "bigfinitetes",
+  "version": "1.0.0",
+  "description": "Tests para bigfinite",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gponceleon/bigfiniteTes.git"
+  },
+  "author": "Gabriela Ponceleon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gponceleon/bigfiniteTes/issues"
+  },
+  "homepage": "https://github.com/gponceleon/bigfiniteTes#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chai": "^3.0.0",
+    "dotenv": "^1.2.0",
+    "express": "^4.12.3",
+    "moment": "^2.20.1",
+    "swagger-express-mw": "^0.1.0",
+    "swagger-tools": "^0.10.4"
+  }
+}

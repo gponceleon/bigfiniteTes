@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  app:
+    container_name: bigfiniteTest
+    hostname: bigfiniteTest
+    command: 'node app.js'
+    environment:
+      - "TZ=Europe/Barcelona"
+    build: .
+    ports:
+      - "3000:80"
+    env_file:
+      - .env
+    volumes:
+      - .:/var/
+      - /var/app/node_modules
+
