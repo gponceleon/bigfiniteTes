@@ -1,5 +1,6 @@
 const mongoose = require('./dbMgr');
 const Schema = mongoose.Schema;
+const screensSchema = require('./screens.model');
 
 
 const schema = new Schema({
@@ -13,7 +14,9 @@ const schema = new Schema({
     },
     created:{
         type: Date
-    }
+    },
+
+    screens: [screensSchema]
 
 });
 

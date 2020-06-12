@@ -7,7 +7,7 @@ const solutionsService = require('../api/services/solutions.service');
 const HttpError = require('../api/helpers/httpError');
 const { NOT_FOUND } = require('../api/helpers/errorCodes');
 
-let SolutionsModel = require('../api/models/solutionsmodel');
+let SolutionsModel = require('../api/models/solutions.model');
 
 const sandbox = sinon.createSandbox();
 
@@ -22,6 +22,22 @@ describe('Tests in services.helper', () => {
             const result = serviceHelper.isString(1);
             expect(result).toBe(false);
         })
+    });
+
+    describe('Tests in manageErrror', () => {
+        test('Given a Error instance should return "INTERNAL_SERVER_ERROR"', () => {
+            const error = new Error('Something happend!');
+            const errorToReturn = serviceHelper.manageError(error);
+            expect(errorToReturn.message).toBe('Internal Server Error');
+            expect(errorToReturn.httpCode).toBe(500);
+        });
+
+        test('Given a HttpError instance should return the http error', () => {
+            const error = new HttpError(NOT_FOUND);
+            const errorToReturn = serviceHelper.manageError(error);
+            expect(errorToReturn.message).toBe('Resource not found');
+            expect(errorToReturn.httpCode).toBe(404);
+        });
     })
 });
 
@@ -273,7 +289,7 @@ describe('Tests en updateProcessInSolution', () => {
         }
     });
 
-    test('Given a value to update diferent to process should throw a error', async() => {
+    test('Given a value to update diferent to process should throw a error', async () => {
         const req = {
             params: {
                 id: "1",
