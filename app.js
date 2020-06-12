@@ -15,6 +15,9 @@ const config = {
     appRoot: __dirname,
 };
 
+require('./routes/solutions.routes')(app, express);
+module.exports = app; // for testing
+
 const port = process.env.PORT || 80;
 const host = process.env.HOST || 'localhost';
 

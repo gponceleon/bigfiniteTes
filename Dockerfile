@@ -8,6 +8,9 @@ WORKDIR /var/app
 
 ENV TZ=Europe/Barcelona
 
-RUN npm install
+RUN npm install --unsafe-perm || \
+  ((if [ -f npm-debug.log ]; then \
+      cat npm-debug.log; \
+    fi) && false)
 
 CMD ["npm","start"]
