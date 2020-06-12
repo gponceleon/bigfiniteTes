@@ -4,7 +4,7 @@
   "description": "Tests para bigfinite",
   "main": "app.js",
   "scripts": {
-    "test": "mocha "
+    "test": "jest --testEnvironment=node --coverage --verbose --forceExit"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,13 @@
     "express": "^4.12.3",
     "moment": "^2.20.1",
     "swagger-express-mw": "^0.1.0",
-    "swagger-tools": "^0.10.4"
+    "swagger-tools": "^0.10.4",
+    "winston": "^3.1.0",
+    "mongoose": "^5.2.8"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "sinon": "^6.1.5",
+    "proxyquire": "^2.1.0"
   }
 }

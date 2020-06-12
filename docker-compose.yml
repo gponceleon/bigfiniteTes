@@ -13,6 +13,6 @@ services:
     env_file:
       - .env
     volumes:
-      - .:/var/
+      - .:/var/app
       - /var/app/node_modules
 
