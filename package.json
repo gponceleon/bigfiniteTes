@@ -1,0 +1,38 @@
+{
+  "name": "bigfinitetes",
+  "version": "1.0.0",
+  "description": "Tests para bigfinite",
+  "main": "app.js",
+  "scripts": {
+    "start" :"node --inspect=0.0.0.0:9229 app.js",
+    "test": "jest test --testEnvironment=node --coverage --verbose --forceExit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gponceleon/bigfiniteTes.git"
+  },
+  "author": "Gabriela Ponceleon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gponceleon/bigfiniteTes/issues"
+  },
+  "homepage": "https://github.com/gponceleon/bigfiniteTes#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chai": "^3.0.0",
+    "jssha": "^2.3.1",
+    "dotenv": "^1.2.0",
+    "express": "^4.12.3",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.20.1",
+    "mongoose": "^5.2.8",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "sinon": "^6.1.5",
+    "proxyquire": "^2.1.0"
+  }
+}
