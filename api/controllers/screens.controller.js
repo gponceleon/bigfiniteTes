@@ -20,6 +20,64 @@ class Screens {
             });
         }
     }
+
+    async deleteScreen(req, res) {
+        try {
+            const response = await screenServices.deleteScreen(req);
+
+            res.status(response.statusCode).send({
+                status: response.statusCode,
+                success: true,
+                message: response.message,
+                data: response.data
+            });
+
+        } catch (error) {
+            res.status(error.httpCode).send({
+                success: false,
+                message: error.message,
+            });
+        }
+    }
+
+    
+    async updateScren(req, res) {
+        try {
+            const response = await screenServices.updateScreen(req);
+
+            res.status(response.statusCode).send({
+                status: response.statusCode,
+                success: true,
+                message: response.message,
+                data: response.data
+            });
+
+        } catch (error) {
+            res.status(error.httpCode).send({
+                success: false,
+                message: error.message,
+            });
+        }
+    }
+
+    async getScreens(req, res) {
+        try {
+            const response = await screenServices.getSreen(req);
+
+            res.status(response.statusCode).send({
+                status: response.statusCode,
+                success: true,
+                message: response.message,
+                data: response.solution
+            });
+
+        } catch (error) {
+            res.status(error.httpCode).send({
+                success: false,
+                message: error.message,
+            });
+        }
+    }
 }
 
 module.exports = new Screens();

@@ -3,7 +3,7 @@ const SolutionModel = require('../models/solutions.model');
 const servHelper = require('../helpers/services.helper');
 const HttpError = require('../helpers/httpError');
 const { CREATED, NO_CONTENT, OK } = require('../helpers/httpResponses');
-const { INVALID_DATA, INTERNAL_SERVER_ERROR, DUPLICATE_DATA, NOT_FOUND } = require('../helpers/errorCodes');
+const { INVALID_DATA, NOT_FOUND } = require('../helpers/errorCodes');
 
 class Screens {
 
@@ -27,7 +27,6 @@ class Screens {
             try {
                 for (const screen of screens) {
                     const isValid = this.validateFields(screen);
-
                     if (isValid) {
                         await SolutionModel.updateOne({ _id: id }, { $push: { screens: screen } });
                     } else {
@@ -67,6 +66,76 @@ class Screens {
                 reject(servHelper.manageError(error));
             }
         });
+    }
+
+
+    /**
+     * Remove screen from solutions
+     * @param {*} req Request
+     */
+    deleteScreen(req) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const { id, screenId } = req.params;
+
+                const solution = await SolutionModel.findOne({ '_id': id });
+                solution.screens.id(screenId).remove();
+                solution.save();
+
+                resolve(OK);
+            } catch (error) {
+                logger.error(`Error in deleteScreen for: ${error.message}`);
+                reject(servHelper.manageError(error));
+            }
+        })
+    }
+
+    /**
+     * Update a sreen
+     * @param {*} req Request
+     */
+    updateScreen(req) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const { id, screenId } = req.params;
+                const screen = req.body;
+
+                const solution = await SolutionModel.findOne({ '_id': id });
+                const oldScreen = solution.screens.id(screenId);
+
+                oldScreen.set(screen);
+                solution.save();
+
+                resolve(OK);
+            } catch (error) {
+                logger.error(`Error in updateScreen for: ${error.message}`);
+                reject(servHelper.manageError(error));
+            }
+        })
+    }
+
+    /**
+     * Get all screen given a solution id
+     * @param {Object} req 
+     */
+    getSreen(req) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const { id } = req.params;
+                const solution = await SolutionModel.findOne({ '_id': id });
+
+                const label = !solution ? NO_CONTENT : OK;
+
+                resolve({
+                    statusCode: label.statusCode,
+                    message: label.message,
+                    solution
+                });
+            } catch (error) {
+                logger.error(`Error in getSreen for: ${error.message}`);
+                reject(servHelper.manageError(error));
+            }
+        })
     }
 }
 

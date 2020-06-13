@@ -4,7 +4,7 @@
   "description": "Tests para bigfinite",
   "main": "app.js",
   "scripts": {
-    "test": "jest --testEnvironment=node --coverage --verbose --forceExit"
+    "test": "jest test --testEnvironment=node --coverage --verbose --forceExit"
   },
   "repository": {
     "type": "git",
