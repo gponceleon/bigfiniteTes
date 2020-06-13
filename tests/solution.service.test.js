@@ -51,6 +51,11 @@ describe('Test in solutionsService ', () => {
 
         test('The Data was duplicate', async () => {
             const req = {
+                user: {
+                    _doc: {
+                        role: 'admin'
+                    }
+                },
                 body: {
                     company: "1",
                     process: 'Process 1'
@@ -70,6 +75,11 @@ describe('Test in solutionsService ', () => {
 
         test('The solutions was created successfully', async () => {
             const req = {
+                user: {
+                    _doc: {
+                        role: 'admin'
+                    }
+                },
                 body: {
                     company: 'Company Name',
                     process: 'Process 1'
@@ -82,6 +92,11 @@ describe('Test in solutionsService ', () => {
 
         test('Given a bad request should thows error', async () => {
             const req = {
+                user: {
+                    _doc: {
+                        role: 'admin'
+                    }
+                },
                 body: {
                     company: 1,
                     process: 'Process 1'
@@ -119,6 +134,11 @@ describe('Tests in getSolutions', () => {
 
     test('Given a error should cath error', async () => {
         const req = {
+            user: {
+                _doc: {
+                    role: 'admin'
+                }
+            },
             params: {
                 company: "Company 1",
             }
@@ -137,6 +157,11 @@ describe('Tests in getSolutions', () => {
 
     test('Given not data found should return "Not content"', async () => {
         const req = {
+            user: {
+                _doc: {
+                    role: 'admin'
+                }
+            },
             params: {
                 company: "Company 1",
             }
@@ -148,6 +173,11 @@ describe('Tests in getSolutions', () => {
 
     test('Given  data found should return "OK"', async () => {
         const req = {
+            user: {
+                _doc: {
+                    role: 'admin'
+                }
+            },
             params: {
                 company: "Company 1",
             }
@@ -176,6 +206,11 @@ describe('Tests in deleteSolutions', () => {
 
     test('Given a error should cath error', async () => {
         const req = {
+            user: {
+                _doc: {
+                    role: 'admin'
+                }
+            },
             params: {
                 id: "1",
             }
@@ -194,6 +229,11 @@ describe('Tests in deleteSolutions', () => {
 
     test('Given not find the id should return "NOT_FOUND"', async () => {
         const req = {
+            user: {
+                _doc: {
+                    role: 'admin'
+                }
+            },
             params: {
                 id: "1",
             }
@@ -212,6 +252,11 @@ describe('Tests in deleteSolutions', () => {
 
     test('Given find the id should return "OK"', async () => {
         const req = {
+            user: {
+                _doc: {
+                    role: 'admin'
+                }
+            },
             params: {
                 id: "1",
             }
@@ -241,9 +286,16 @@ describe('Tests en updateProcessInSolution', () => {
 
     test('Given a error should cath error', async () => {
         const req = {
+            user: {
+                _doc: {
+                    role: 'admin'
+                }
+            },
             params: {
                 id: "1",
-                process: 'P1'
+            },
+            body:{
+                process: 'h'
             }
         }
         let existError = false;
@@ -260,9 +312,16 @@ describe('Tests en updateProcessInSolution', () => {
 
     test('Given a value to update diferent to process should throw a error', async () => {
         const req = {
+            user: {
+                _doc: {
+                    role: 'admin'
+                }
+            },
             params: {
                 id: "1",
-                label: 'P1'
+            },
+            body:{
+                label: 'h'
             }
         }
         let existError = false;
@@ -279,8 +338,16 @@ describe('Tests en updateProcessInSolution', () => {
 
     test('Update successfully', async () => {
         const req = {
+            user: {
+                _doc: {
+                    role: 'admin'
+                }
+            },
             params: {
                 id: "1",
+                
+            },
+            body:{
                 process: 'P1'
             }
         }

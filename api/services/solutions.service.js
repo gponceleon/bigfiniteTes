@@ -2,7 +2,7 @@ const SolutionModel = require('../models/solutions.model');
 const logger = require('../common/logger');
 const servHelper = require('../helpers/services.helper');
 const HttpError = require('../helpers/httpError');
-const { INVALID_DATA, INTERNAL_SERVER_ERROR, DUPLICATE_DATA, NOT_FOUND } = require('../helpers/errorCodes');
+const { INVALID_DATA, INTERNAL_SERVER_ERROR, DUPLICATE_DATA, NOT_FOUND, AUTHORIZATION_FAILURE } = require('../helpers/errorCodes');
 const { CREATED, NO_CONTENT, OK } = require('../helpers/httpResponses');
 
 class Solutions {
@@ -31,7 +31,9 @@ class Solutions {
     createSolutions(req) {
         return new Promise(async (resolve, reject) => {
             try {
-                const { company, process } = req.body;
+                const { user, body: { company, process } } = req;
+                if (user._doc.role !== 'user' && user._doc.role !== 'admin') throw new HttpError(AUTHORIZATION_FAILURE);
+
                 if (!servHelper.isString(company) || !servHelper.isString(process)) {
                     throw new HttpError(INVALID_DATA);
                 }
@@ -81,7 +83,10 @@ class Solutions {
     deleteSolutions(req) {
         return new Promise(async (resolve, reject) => {
             try {
-                const { id } = req.params;
+                const { user, params: { id } } = req;
+
+                if (user._doc.role !== 'user' && user._doc.role !== 'admin') throw new HttpError(AUTHORIZATION_FAILURE);
+
                 const query = await SolutionModel.deleteOne({ _id: id });
 
                 if (query.deletedCount == 0) throw new HttpError(NOT_FOUND);
@@ -101,7 +106,9 @@ class Solutions {
     updateProcessInSolution(req) {
         return new Promise(async (resolve, reject) => {
             try {
-                const { process, id } = req.params;
+                const { user, params: { id }, body: { process } } = req;
+
+                if (user._doc.role !== 'user' && user._doc.role !== 'admin') throw new HttpError(AUTHORIZATION_FAILURE);
 
                 if (!process) throw new HttpError(INVALID_DATA);
 
