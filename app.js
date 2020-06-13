@@ -1,7 +1,7 @@
-const SwaggerUi = require('swagger-tools/middleware/swagger-ui');
-const SwaggerExpress = require('swagger-express-mw');
 const express = require('express');
 const app = express();
+const passport = require('passport');
+
 
 const fs = require('fs');
 
@@ -11,12 +11,19 @@ if (fs.existsSync('./.env')) {
     require('dotenv').config();
 }
 
+/* Import middlewares */
+const authentication = require('./api/middlewares/authentication.middleware.js');
+
 const config = {
     appRoot: __dirname,
 };
 
+/* Set authentication */
+passport.use(authentication);
+
 require('./routes/solutions.routes')(app, express);
 require('./routes/screens.routes')(app, express);
+require('./routes/user.routes')(app, express);
 
 module.exports = app; // for testing
 

@@ -48,8 +48,9 @@ class Screens {
     createScreens(req) {
         return new Promise(async (resolve, reject) => {
             try {
-                const { id } = req.params;
-                const { screens } = req.body;
+                const { user, params: { id }, body: { screens } } = req;
+                if (user._doc.role !== 'user' && user._doc.role !== 'admin') throw new HttpError(AUTHORIZATION_FAILURE);
+
                 const screenWithError = [];
 
                 const solutions = await SolutionModel.findOne({ _id: id });
@@ -76,7 +77,8 @@ class Screens {
     deleteScreen(req) {
         return new Promise(async (resolve, reject) => {
             try {
-                const { id, screenId } = req.params;
+                const { user, params: { id, screenId } } = req;
+                if (user._doc.role !== 'user' && user._doc.role !== 'admin') throw new HttpError(AUTHORIZATION_FAILURE);
 
                 const solution = await SolutionModel.findOne({ '_id': id });
                 solution.screens.id(screenId).remove();
@@ -97,8 +99,8 @@ class Screens {
     updateScreen(req) {
         return new Promise(async (resolve, reject) => {
             try {
-                const { id, screenId } = req.params;
-                const screen = req.body;
+                const { user, params: { id, screenId }, body: { screen } } = req;
+                if (user._doc.role !== 'user' && user._doc.role !== 'admin') throw new HttpError(AUTHORIZATION_FAILURE);
 
                 const solution = await SolutionModel.findOne({ '_id': id });
                 const oldScreen = solution.screens.id(screenId);

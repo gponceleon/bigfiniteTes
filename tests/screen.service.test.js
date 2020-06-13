@@ -110,6 +110,11 @@ describe('Tests in screenService', () => {
             };
 
             this.req = {
+                user: {
+                    _doc: {
+                        role: 'admin'
+                    }
+                },
                 params: {
                     id: "5ee3cd65aa2172326bf1fe8f",
                 },
@@ -185,6 +190,11 @@ describe('Tests in screenService', () => {
             };
 
             this.req = {
+                user: {
+                    _doc: {
+                        role: 'admin'
+                    }
+                },
                 params: {
                     id: "5ee3cd65aa2172326bf1fe8f",
                     screenId: "6ee3cd65aa2172326bf1fe8f"
@@ -241,6 +251,11 @@ describe('Tests in screenService', () => {
             };
 
             this.req = {
+                user: {
+                    _doc: {
+                        role: 'admin'
+                    }
+                },
                 params: {
                     id: "5ee3cd65aa2172326bf1fe8f",
                     screenId: "6ee3cd65aa2172326bf1fe8f"
@@ -294,6 +309,11 @@ describe('Tests in screenService', () => {
             };
 
             this.req = {
+                user: {
+                    _doc: {
+                        role: 'admin'
+                    }
+                },
                 params: {
                     id: "5ee3cd65aa2172326bf1fe8f",
                 }
