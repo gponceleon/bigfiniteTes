@@ -16,6 +16,8 @@ const config = {
 };
 
 require('./routes/solutions.routes')(app, express);
+require('./routes/screens.routes')(app, express);
+
 module.exports = app; // for testing
 
 const port = process.env.PORT || 80;

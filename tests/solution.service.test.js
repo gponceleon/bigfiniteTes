@@ -2,28 +2,13 @@ const mongoose = require('mongoose');
 const sinon = require('sinon');
 const proxyquire = require('proxyquire').noCallThru();
 
-const serviceHelper = require('../api/helpers/services.helper');
 const solutionsService = require('../api/services/solutions.service');
 const HttpError = require('../api/helpers/httpError');
 const { NOT_FOUND } = require('../api/helpers/errorCodes');
 
-let SolutionsModel = require('../api/models/solutionsmodel');
+let SolutionsModel = require('../api/models/solutions.model');
 
 const sandbox = sinon.createSandbox();
-
-describe('Tests in services.helper', () => {
-    describe('Test in isString', () => {
-        test('Given the string "Hello" should return true', () => {
-            const result = serviceHelper.isString("Hola");
-            expect(result).toBe(true);
-        });
-
-        test('Given the number "1" should return false', () => {
-            const result = serviceHelper.isString(1);
-            expect(result).toBe(false);
-        })
-    })
-});
 
 describe('Test in solutionsService ', () => {
     describe('Tests in manageError', () => {
@@ -273,7 +258,7 @@ describe('Tests en updateProcessInSolution', () => {
         }
     });
 
-    test('Given a value to update diferent to process should throw a error', async() => {
+    test('Given a value to update diferent to process should throw a error', async () => {
         const req = {
             params: {
                 id: "1",

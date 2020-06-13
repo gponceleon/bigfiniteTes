@@ -1,4 +1,4 @@
-const SolutionModel = require('../models/solutionsmodel');
+const SolutionModel = require('../models/solutions.model');
 const logger = require('../common/logger');
 const servHelper = require('../helpers/services.helper');
 const HttpError = require('../helpers/httpError');
