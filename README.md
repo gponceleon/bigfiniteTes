@@ -29,6 +29,10 @@ Server will start running soon :)
 Express server is up and running on port YOUR_PORT
 ```
 
+## To run in Docker 
+  docker-compose up -d
+  make up (need make for this)
+  
 ## HTTP exposed endpoints
 
 This project exposes 7 endpoints, and those are listed below.
