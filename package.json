@@ -4,7 +4,7 @@
   "description": "Tests para bigfinite",
   "main": "app.js",
   "scripts": {
-    "start" :"node --inspect=0.0.0.0:9229 app.js",
+    "start": "node --inspect=0.0.0.0:9229 app.js",
     "test": "jest test --testEnvironment=node --coverage --verbose --forceExit"
   },
   "repository": {
@@ -20,10 +20,11 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "chai": "^3.0.0",
-    "jssha": "^2.3.1",
     "dotenv": "^1.2.0",
     "express": "^4.12.3",
     "jsonwebtoken": "^8.5.1",
+    "jssha": "^2.3.1",
+    "lodash": "^4.17.12",
     "moment": "^2.20.1",
     "mongoose": "^5.2.8",
     "passport": "^0.4.0",
